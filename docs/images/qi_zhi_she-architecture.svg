@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="700" viewBox="0 0 1440 700" role="img" aria-labelledby="title desc">
+  <title id="title">启知社本地开发架构</title>
+  <desc id="desc">React 前端连接 Spring Boot API。API 连接 MySQL、Redis、Kafka、Elasticsearch、BGE-M3 本地向量服务、DeepSeek 和阿里云 OSS。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f5ed"/>
+      <stop offset="1" stop-color="#eee9dd"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+      <path d="M0 0L9 4L0 8Z" fill="#718078"/>
+    </marker>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .title { font-size: 30px; font-weight: 700; fill: #26352f; }
+      .subtitle { font-size: 15px; fill: #66736b; }
+      .node-title { font-size: 18px; font-weight: 700; fill: #26352f; }
+      .node-sub { font-size: 13px; fill: #66736b; }
+      .tag { font-size: 12px; font-weight: 600; fill: #52645a; }
+      .line { fill: none; stroke: #718078; stroke-width: 2; marker-end: url(#arrow); }
+      .line-dash { fill: none; stroke: #9c8c71; stroke-width: 2; stroke-dasharray: 7 7; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1440" height="700" rx="28" fill="url(#bg)"/>
+  <text x="64" y="72" class="title">启知社 · 本地开发架构</text>
+  <text x="64" y="101" class="subtitle">前后端本地运行，数据与搜索依赖由 Docker Compose 管理</text>
+
+  <!-- request and provider connections -->
+  <path class="line" d="M300 332H390"/>
+  <path class="line" d="M660 332H738V178H810"/>
+  <path class="line" d="M660 332H810"/>
+  <path class="line" d="M660 332H738V482H810"/>
+  <path class="line" d="M1015 208H1088V163H1160"/>
+  <path class="line" d="M660 420H1098V314H1160"/>
+  <path class="line" d="M660 390H1070V501H1160"/>
+  <path class="line-dash" d="M660 410H1108V605H1160"/>
+
+  <!-- browser -->
+  <rect x="64" y="267" width="236" height="130" rx="18" fill="#fffdf8" stroke="#d9d2c4" stroke-width="2"/>
+  <rect x="64" y="267" width="236" height="12" rx="6" fill="#c8754e"/>
+  <text x="88" y="318" class="node-title">浏览器</text>
+  <text x="88" y="345" class="node-sub">React 18 · TypeScript</text>
+  <rect x="88" y="359" width="92" height="24" rx="12" fill="#f2e6da"/>
+  <text x="102" y="376" class="tag">Vite :5173</text>
+
+  <!-- backend -->
+  <rect x="390" y="235" width="270" height="194" rx="20" fill="#fffdf8" stroke="#bfcfc1" stroke-width="2"/>
+  <rect x="390" y="235" width="270" height="12" rx="6" fill="#597866"/>
+  <text x="418" y="291" class="node-title">启知社 API</text>
+  <text x="418" y="319" class="node-sub">Spring Boot 3 · Java 21</text>
+  <text x="418" y="349" class="node-sub">认证 · 知文 · 关系 · 搜索</text>
+  <text x="418" y="372" class="node-sub">计数 · 对象存储 · AI</text>
+  <rect x="418" y="389" width="105" height="24" rx="12" fill="#e5ede5"/>
+  <text x="432" y="406" class="tag">API :8080</text>
+
+  <!-- local containers -->
+  <rect x="810" y="128" width="205" height="94" rx="16" fill="#fffdf8" stroke="#d9d2c4" stroke-width="2"/>
+  <text x="834" y="166" class="node-title">MySQL</text>
+  <text x="834" y="193" class="node-sub">用户、知文、关系</text>
+  <rect x="810" y="284" width="205" height="94" rx="16" fill="#fffdf8" stroke="#d9d2c4" stroke-width="2"/>
+  <text x="834" y="322" class="node-title">Redis</text>
+  <text x="834" y="349" class="node-sub">验证码、缓存、计数</text>
+  <rect x="810" y="440" width="205" height="94" rx="16" fill="#fffdf8" stroke="#d9d2c4" stroke-width="2"/>
+  <text x="834" y="478" class="node-title">Kafka</text>
+  <text x="834" y="505" class="node-sub">异步事件处理</text>
+  <text x="814" y="577" class="subtitle">Docker Compose</text>
+
+  <!-- search / embedding -->
+  <rect x="1160" y="120" width="218" height="86" rx="16" fill="#fffdf8" stroke="#d9d2c4" stroke-width="2"/>
+  <text x="1184" y="157" class="node-title">Elasticsearch + IK</text>
+  <text x="1184" y="183" class="node-sub">文本与向量检索 · :19200</text>
+  <rect x="1160" y="271" width="218" height="86" rx="16" fill="#fffdf8" stroke="#d9d2c4" stroke-width="2"/>
+  <text x="1184" y="308" class="node-title">本地 BGE-M3</text>
+  <text x="1184" y="334" class="node-sub">生成 1024 维向量 · :8090</text>
+  <rect x="1160" y="458" width="218" height="86" rx="16" fill="#fffdf8" stroke="#d9d2c4" stroke-width="2"/>
+  <text x="1184" y="495" class="node-title">阿里云 OSS</text>
+  <text x="1184" y="521" class="node-sub">头像、正文和图片</text>
+  <rect x="1160" y="570" width="218" height="70" rx="16" fill="#f6eee2" stroke="#d8c6a8" stroke-width="2"/>
+  <text x="1184" y="601" class="node-title">DeepSeek API</text>
+  <text x="1184" y="624" class="node-sub">摘要生成与问答回答</text>
+  <text x="1032" y="602" class="tag">AI 生成</text>
+</svg>

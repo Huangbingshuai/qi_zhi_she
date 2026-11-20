@@ -1,0 +1,29 @@
+# Local development-only generated signing keys
+**/.local/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/
+frontend/*.tsbuildinfo
+frontend/npm-debug.log*
+models/
+
+# Backend
+backend/target/
+backend/local-embedding/.venv/
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# IDE and operating system files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# Logs and local data
+*.log
+data/
+
+.vite/
+
+/models

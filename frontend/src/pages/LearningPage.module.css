@@ -1,0 +1,104 @@
+.emptyCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 60px 48px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 42px rgba(255, 138, 65, 0.12);
+  text-align: center;
+}
+
+.icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffcd81 0%, #ff9a54 100%);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 32px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-strong);
+}
+
+.description {
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+.learningSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--color-text-strong);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.sectionDescription {
+  margin: 8px 0 0;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.clearButton {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font: inherit;
+  padding: 8px 0;
+}
+
+.clearButton:hover {
+  color: var(--color-danger);
+}
+
+.historyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.historyItem {
+  min-width: 0;
+}
+
+.readTime {
+  margin: 10px 4px 0;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .sectionHeading {
+    align-items: flex-start;
+  }
+
+  .historyGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Reading space visual pass */
+.emptyCard { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 6px; box-shadow: none; }
+.icon { border-radius: 3px; background: #182823; }
+.historyGrid { gap: 16px; }

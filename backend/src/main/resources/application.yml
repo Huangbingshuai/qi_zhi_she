@@ -1,0 +1,162 @@
+spring:
+  application:
+    name: qi_zhi_she
+  datasource:
+    url: jdbc:mysql://127.0.0.1:13306/qi_zhi_she?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: qi_zhi_she
+    password: qi_zhi_she-dev
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 16379
+      password: ""
+      timeout: 3s
+  kafka:
+    bootstrap-servers: 127.0.0.1:19092
+    template:
+      default-topic: qi_zhi_she-events
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      retries: 3
+      properties:
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
+    consumer:
+      group-id: qi_zhi_she
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+    listener:
+      type: single
+      ack-mode: manual
+  ai:
+    deepseek:
+      # Set your own DeepSeek key locally; do not commit the real value.
+      api-key: "YOUR_DEEPSEEK_API_KEY"
+      base-url: https://api.deepseek.com
+      chat:
+        options:
+          model: deepseek-chat
+          temperature: 0.3
+    vectorstore:
+      elasticsearch:
+        initialize-schema: true
+        index-name: qi_zhi_she_ai_index_bge_m3
+        dimensions: 1024
+  elasticsearch:
+    uris: http://127.0.0.1:19200
+    username: ""
+    password: ""
+
+server:
+  address: 127.0.0.1
+  port: 8080
+
+# Local BGE-M3 embedding service. Keep the model under the ignored project-root models/ directory.
+local-embedding:
+  base-url: http://127.0.0.1:8090
+  model-path: models/bge-m3
+  dimensions: 1024
+  device: auto
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+auth:
+  jwt:
+    issuer: qi_zhi_she
+    key-id: qi_zhi_she-local-dev
+    private-key: file:./.local/keys/private.pem
+    public-key: file:./.local/keys/public.pem
+    access-token-ttl: 15m
+    refresh-token-ttl: 7d
+  verification:
+    code-length: 6
+    ttl: 5m
+    max-attempts: 5
+    send-interval: 60s
+    daily-limit: 10
+  password:
+    bcrypt-strength: 10
+    min-length: 8
+
+# The local profile has no Canal container. Outbox rows remain in MySQL; Canal can be enabled
+# after a local Canal instance is configured.
+canal:
+  enabled: false
+  host: 127.0.0.1
+  port: 11111
+  destination: qi_zhi_she
+  username: ""
+  password: ""
+  filter: qi_zhi_she.outbox
+  batchSize: 1000
+  intervalMs: 1000
+
+counter:
+  rebuild:
+    enabled: true
+    lock:
+      ttl-ms: 5000
+      watchdog-ms: 30000
+    rate:
+      permits: 3
+      window-seconds: 10
+    backoff:
+      base-ms: 500
+      max-ms: 30000
+
+oss:
+  endpoint: oss-cn-beijing.aliyuncs.com
+  # Set your own OSS AccessKey locally; do not commit real credentials.
+  access-key-id: "YOUR_OSS_ACCESS_KEY_ID"
+  access-key-secret: "YOUR_OSS_ACCESS_KEY_SECRET"
+  bucket: "zhiguangapp-hb"
+  public-domain: ""
+  folder: avatars
+
+cache:
+  l2:
+    public-cfg:
+      ttl-seconds: 60
+      max-size: 10000
+    mine-cfg:
+      ttl-seconds: 30
+      max-size: 5000
+  hotkey:
+    window-seconds: 10
+    segment-seconds: 10
+    level-low: 5
+    level-medium: 20
+    level-high: 100
+    extend-low-seconds: 30
+    extend-medium-seconds: 60
+    extend-high-seconds: 120
+
+logging:
+  level:
+    root: INFO
+    com.tongji: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
